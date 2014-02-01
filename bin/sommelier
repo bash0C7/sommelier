@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'open-uri'
+require 'json'
+
+search_word = ('a'..'z').to_a.sample
+query="https://rubygems.org/api/v1/search.json?query=#{search_word}"
+
+gems = JSON.parse(open(query).read)
+
+gem = gems.sample
+puts [gem['name'], gem['gem_uri'], gem['info']].join("\t")
+
